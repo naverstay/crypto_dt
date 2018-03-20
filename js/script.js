@@ -124,11 +124,9 @@ $(function ($) {
         });
 
     $('.completeIt').each(function (ind) {
-        var inp = this, ajax = new XMLHttpRequest();
-        ajax.open("GET",
-            "./data/search.json",
-            //"https://restcountries.eu/rest/v1/lang/fr",
-            true);
+        var inp = this, ajax = new XMLHttpRequest(), url = $(inp).attr('data-url');
+        ajax.open("GET", url, true);
+
         ajax.onload = function () {
             var list = JSON.parse(ajax.responseText).map(function (i) {
                 return {name: i.name, date: i.date};
@@ -151,21 +149,27 @@ $(function ($) {
                     return '<div class="autocomplete-suggestion" ' +
                         'data-name="' + item.name + '" ' +
                         'data-val="' + search + '">' +
-                        '<div class="search_date">' + item.date + '' + '</div>' +
+                        //'<div class="search_date">' + item.date + '' + '</div>' +
                         '<div class="search_result">' + item.name + '</div>' +
                         '</div>';
                 },
                 onSelect: function (e, term, item) {
-                    alert('Item "' + ' (' + item.getAttribute('data-name') + ')" selected by ' + (e.type === 'keydown' ? 'pressing enter' : 'mouse click') + '.');
+                    console.log('Item "' + ' (' + item.getAttribute('data-name') + ')" selected by ' + (e.type === 'keydown' ? 'pressing enter' : 'mouse click') + '.');
+
+                    inp.value = item.getAttribute('data-name');
+
                 }
             });
         };
+
         ajax.send();
     });
 
     initSubscribePopup();
 
     initValidation();
+
+    initMask();
 
 });
 
@@ -252,6 +256,12 @@ function initSubscribePopup() {
             initValidation('.validatePopup', 1);
         }
     });
+}
+
+function initMask() {
+  $("input").filter(function (i, el) {
+    return $(el).attr('data-inputmask') !== void 0;
+  }).inputmask();
 }
 
 function initValidation(el, prompts) {

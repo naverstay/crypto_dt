@@ -56,6 +56,41 @@
   margin-top: 40px;
 }
 
+.article_preview_link {
+  @extend %icon_pseudo;
+  @extend %firm_color;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  padding-right: 26px;
+  padding-left: 2px;
+
+  &:before {
+    position: absolute;
+    right: 0;
+    top: 2px;
+    content: $icon-arrow-right;
+  }
+
+  span {
+    text-decoration: underline;
+  }
+
+  @include respond-to-min($resp_step_2) {
+    color: #fff !important;
+    position: absolute;
+    left: 30px;
+    padding-right: 36px;
+    bottom: 24px;
+    font: 14px $RubikMed;
+
+    &:before {
+      top: 0;
+      font-size: 18px;
+    }
+  }
+}
+
 .article_preview {
   position: relative;
   font: 22px/30px $RubikMed;
@@ -76,7 +111,7 @@
   }
 
   ._release & {
-    border-bottom-color: $violette_2;
+    border-bottom-color: $pink;
   }
 
   ._analysis & {
@@ -416,11 +451,11 @@
   }
 
   ._release & {
-    color: $violette_2;
+    color: $pink;
 
     &._active,
     &:hover {
-      background: $violette_2;
+      background: $pink;
     }
   }
 
@@ -550,15 +585,15 @@
     }
 
     ._release & {
-      border-color: $violette_2;
+      border-color: $pink;
 
       &:before {
-        border-right-color: $violette_2;
+        border-right-color: $pink;
       }
 
       &:hover {
         &:after {
-          border-right-color: $violette_2;
+          border-right-color: $pink;
         }
       }
     }
@@ -880,6 +915,14 @@
     margin: 30px 0;
   }
 
+  .article_img {
+    margin: 30px 0;
+
+    img {
+      margin: 0;
+    }
+  }
+
   a {
     @extend %firm_color;
   }
@@ -930,5 +973,77 @@
         }
       }
     }
+  }
+}
+
+.new_release_holder {
+  margin: 0 auto;
+  max-width: 688px;
+  padding-top: 34px;
+
+  h2 {
+    font: 38px $RubikBold;
+    margin-bottom: 25px;
+  }
+
+  p {
+    font-size: 20px;
+    line-height: 1.4;
+    margin-bottom: 28px;
+  }
+
+  @include respond-to-min($resp_step_2) {
+    max-width: 760px;
+  }
+}
+
+.release_form_holder {
+  border: solid #f8f8f8;
+  border-width: 1px 0;
+  margin: 50px 0 25px;
+  padding: 43px 0 8px;
+}
+
+.new_release_form {
+  margin: 0 auto;
+  max-width: 688px;
+
+  .form_cell {
+    margin-bottom: 28px;
+
+    .form_group .form_cell {
+      margin-bottom: 0;
+    }
+  }
+
+  .form_group {
+    @extend %clearfix;
+    margin-left: -32px;
+
+    .form_cell {
+      width: 50%;
+      padding-left: 32px;
+      float: left;
+    }
+  }
+
+  @include respond-to-min($resp_step_2) {
+    max-width: 760px;
+  }
+}
+
+.release_summary {
+  margin-top: 10px;
+  border-top: 1px solid #f8f8f8;
+  padding: 28px 0;
+
+  p {
+    margin-top: 4px;
+    font: 14px $RubikBold;
+  }
+
+  ._hash {
+    color: #c0c0c0;
+    font: 9px $RubikMed;
   }
 }

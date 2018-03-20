@@ -65,6 +65,7 @@ mixin footer()
                     li: a.action_link._w(href='#')
                     li: a.action_link._t(href='#')
                     li: a.action_link._r(href='#')
+                    li: a.action_link._y(href='#')
 
                 .lang_block
                     select.lang_select
@@ -103,8 +104,8 @@ mixin footer()
                     li: a.action_link._t(href='#')
                     li: a.action_link._r(href='#')
 
-mixin action_block()
-    .article_action_block.articleActionBlock
+mixin action_block(calendar)
+    .article_action_block.articleActionBlock(class= calendar ? '_calendar' : '')
         a.article_action_btn.actionBtn(href='#')
         .action_block
             a.action_block_close.actionBtn(href='#')
@@ -129,7 +130,11 @@ mixin action_block()
                 li: a.action_soc.icon-tg(href='#' data-network="googleplus" class='st-custom-button')
                     span Telegram
 
-mixin aside_block()
+        - if (calendar)
+            .article_calendar_holder
+              a.article_calendar_link(href='#') Add
+
+mixin aside_block(calendar)
     .aside_block
         .aside_info_box
             .aside_box_caption
@@ -180,6 +185,38 @@ mixin aside_block()
                                 span.article_stat_val._stat_views 212
                             li._first
                                 a.article_stat_val(href='#') Ariel Deschapell
+
+        - if (calendar)
+            .aside_info_box
+                .aside_box_caption
+                    span.aside_caption_icon._calendar
+                    .aside_caption_link Upcoming CryptoEvents
+
+                ul.recent_news_list
+                    li
+                        .recent_news
+                            a.article_link(href='#') SXSW Crypto Summit: New Girls on the Block
+                            ul.article_stat
+                                li
+                                    span.article_stat_val Jan 10, 2018 at 10:00
+                                li
+                                    span.article_stat_val._stat_views 212
+                                li._first
+                                    a.article_stat_val(href='#') Ariel Deschapell
+
+                    li
+                        .recent_news
+                            a.article_link(href='#') BlockShow Europe Meetups: Stockholm
+                            ul.article_stat
+                                li
+                                    span.article_stat_val Jan 10, 2018 at 10:00
+                                li
+                                    span.article_stat_val._stat_views 212
+                                li._first
+                                    a.article_stat_val(href='#') Ariel Deschapell
+
+                    li
+                        a.recent_news_link(href='#') Show all
 
         .aside_subscribe
             .footer_logo
@@ -526,11 +563,98 @@ mixin article_soc(cls)
 
 mixin search()
     .search_holder
-        .search_title Search
-        form(action='#')
-            .form_cell
-                input.completeIt.search_input(placeholder='search...')
-                button.filter_btn
+        .search_head
+            .section_inner
+                .search_form
+                    form(action='#')
+                        .form_cell
+                            input.search_input(placeholder='search...')
+                            button.filter_btn
+
+                .search_title
+                    span Search results&nbsp;
+                    span._counter — 200 articles and news
+        .search_body
+            .section_inner
+                .news_row
+                    +loop_while(3)
+                        .news_col
+                            ul.article_reviews._article
+                                li
+                                    .article_block._review
+                                        .article_img
+                                            a.article_img_link(href='#'): img(src='i/remote.jpg')
+                                        .article_title
+                                            a.article_link(href='#') CFTC Tech Advisors to Talk #[span.clr_violette(href='#') Crypto, Blockchain] This Week
+                                        ul.article_stat
+                                            li
+                                                span.article_stat_val Jan 10, 2018 at 10:00
+                                            li
+                                                span.article_stat_val._stat_views 212
+                                            li._first
+                                                .article_stat_val Ariel Deschapell
+                                li
+                                    .article_block._review
+                                        .article_img
+                                            a.article_img_link(href='#'): img(src='i/remote.jpg')
+
+                                        .article_title
+                                            a.article_link(href='#') Lightning Network May Not Solve Bitcoin's Scaling 'Trilemma'
+                                        ul.article_stat
+                                            li
+                                                span.article_stat_val Jan 10, 2018 at 10:00
+                                            li
+                                                span.article_stat_val._stat_views 212
+                                            li._first
+                                                .article_stat_val Ariel Deschapell
+                                li
+                                    .article_block._review
+                                        .article_img
+                                            a.article_img_link(href='#'): img(src='i/remote.jpg')
+
+                                        .article_title
+                                            a.article_link(href='#') 2018's Challenge: Promote Responsible Blockchain
+                                        ul.article_stat
+                                            li
+                                                span.article_stat_val Jan 10, 2018 at 10:00
+                                            li
+                                                span.article_stat_val._stat_views 212
+                                            li._first
+                                                .article_stat_val Ariel Deschapell
+
+                                li
+                                    .article_block._review
+                                        .article_img
+                                            a.article_img_link(href='#'): img(src='i/remote.jpg')
+
+                                        .article_title
+                                            a.article_link(href='#') Bulgaria Joins 'International Operation' Against OneCoin
+                                        ul.article_stat
+                                            li
+                                                span.article_stat_val Jan 10, 2018 at 10:00
+                                            li
+                                                span.article_stat_val._stat_views 212
+                                            li._first
+                                                .article_stat_val Ariel Deschapell
+
+                                li
+                                    .article_block._review
+                                        .article_img
+                                            a.article_img_link(href='#'): img(src='i/remote.jpg')
+
+                                        .article_title
+                                            a.article_link(href='#') TSMC Expects 'Strong' Crypto Mining Demand to Continue
+                                        ul.article_stat
+                                            li
+                                                span.article_stat_val Jan 10, 2018 at 10:00
+                                            li
+                                                span.article_stat_val._stat_views 212
+                                            li._first
+                                                .article_stat_val Ariel Deschapell
+
+        .search_footer
+            .section_inner
+                a.btn_v1.more_btn.gray_btn(href='#') More search results
 
 mixin header()
     .header
@@ -622,7 +746,7 @@ mixin widget_converter()
     | })();
     | </script>
 
-mixin scripts(share)
+mixin scripts(share, mask)
     link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Rubik:400,500,700', media='all')
 
     -if (!prod)
@@ -637,6 +761,7 @@ mixin scripts(share)
     - else
         script(src='js/jquery1.10.js?t=' + time)
         script(src='js/jquery.popup.min.js?t=' + time)
+        script(src='js/jquery.inputmask.bundle.js?t=' + time)
         script(src='js/auto-complete.js?t=' + time)
         script(src='js/jquery.validationEngine.js?t=' + time)
         script(src='js/jquery.validationEngine-ru.js?t=' + time)

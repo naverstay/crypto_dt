@@ -1,9 +1,9 @@
 .autocomplete_v1 {
   //display: block !important;
   max-width: 100%;
-  background-color: transparent;
-  border: 0;
-  margin-top: 16px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  background: #fff;
   box-shadow: none;
 
   .autocomplete-suggestion {
@@ -11,19 +11,18 @@
     @extend %clearfix;
     position: relative;
     padding: 9px 0;
-    color: #fff;
+    color: #000;
 
     &.selected {
       background-color: transparent;
-      color: #a7a7a7;
+      color: $violette;
     }
   }
 
   .search_result {
     white-space: normal;
-    padding-left: 37px;
-    font: 16px/1.4 $RubikBold;
-    letter-spacing: -.021em;
+    font: 13px/1.2 $RubikMed;
+    padding: 3px 16px;
   }
 
   .search_date {
@@ -40,13 +39,13 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  color: #fff;
+  color: $violette;
   border: 0;
   background: none;
   font: 16px/1 $RubikBold;
   border-radius: 24px;
   height: 48px;
-  padding: 16px 56px 16px 36px;
+  padding: 16px 56px 16px 70px;
 }
 
 .input_v1 {
@@ -103,6 +102,39 @@
   }
 }
 
+.input_v3 {
+  @include transition_all(border-color .3s);
+  display: block;
+  height: 40px;
+  width: 100%;
+  color: #000;
+  border: 2px solid rgba(0, 0, 0, .1);
+  border-radius: 2px;
+  font: 13px/16px $RubikMed;
+  padding: 10px 16px;
+
+  &:hover {
+    border-color: rgba(0, 0, 0, .16);
+  }
+
+  &.error {
+    border-color: rgba(199, 41, 61, .4);
+  }
+
+  &.success {
+    border-color: rgba(38, 109, 17, .4);
+  }
+
+  &[disabled] {
+    background: #f8f8f8 !important;
+    border: 2px solid rgba(0, 0, 0, .1) !important;
+  }
+}
+
+textarea.input_v3 {
+  height: 240px;
+}
+
 .input_w {
   position: relative;
 }
@@ -131,6 +163,15 @@
 .label_v1 {
   color: #000;
   font: 13px $RubikMed;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 7px;
+}
+
+.label_v2 {
+  letter-spacing: .02em;
+  color: #000;
+  font: 14px $RubikMed;
   display: inline-block;
   vertical-align: top;
   margin-bottom: 7px;

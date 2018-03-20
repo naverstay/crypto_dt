@@ -138,6 +138,10 @@
 
   .article_heading {
     padding-right: 180px;
+
+    ._event & {
+      padding-right: 0;
+    }
   }
 
   &:before {
@@ -149,6 +153,10 @@
     width: 213px;
     overflow: hidden;
     font-size: 283px;
+
+    ._event & {
+      display: none;
+    }
   }
 
   @include respond-to-min($resp_step_2) {
@@ -173,6 +181,10 @@
       left: 0;
       width: 20px;
       bottom: 75px;
+
+      ._event & {
+        display: none;
+      }
     }
 
     &._no_title {
@@ -333,6 +345,12 @@
       margin-top: 34px;
       margin-bottom: 34px;
 
+      ._event & {
+        .article_img {
+          margin-bottom: 0;
+        }
+      }
+
       .article_action {
         left: auto;
         right: 78px;
@@ -425,11 +443,70 @@
         width: 125px;
         font-size: 160px;
       }
+
+      ._event & {
+        font: 18px/24px $RubikReg;
+        color: #fff;
+        width: 272px;
+        margin-bottom: 28px;
+        padding: 26px 33px 106px;
+
+        &:before {
+          content: '';
+          top: 0;
+          right: 100% !important;
+          bottom: 0 !important;
+          width: 595px;
+          height: auto;
+          background: inherit;
+        }
+      }
+
+      ._event._news &,
+      ._event._stories &,
+      ._event._top & {
+        background-color: $violette;
+      }
+
+      ._event._release & {
+        background-color: $pink;
+      }
+
+      ._event._analysis & {
+        background-color: $orange;
+      }
+
+      ._event._pricewise & {
+        background-color: $green;
+      }
+
+      ._event._sponsored & {
+        background-color: $green_2;
+      }
+
+      ._event._pool & {
+        background-color: $blue;
+      }
+
+      ._event._features & {
+        background-color: $red;
+      }
+
+      ._event._wiki & {
+        background-color: $brown;
+      }
+
+      ._event._crypto & {
+        background-color: $brown_2;
+      }
+
+      ._event._watch & {
+        background-color: $violette_2;
+      }
     }
   }
 
   @include respond-to-min($resp_step_3) {
-
     .article_preview {
       width: 292px;
       font-size: 24px;
@@ -442,6 +519,14 @@
         width: 150px;
         font-size: 195px;
       }
+
+      ._event & {
+        width: 336px;
+
+        &:before {
+          width: 675px;
+        }
+      }
     }
   }
 
@@ -453,6 +538,14 @@
       font-size: 26px;
       line-height: 34px;
       padding: 35px 10px 155px;
+
+      ._event & {
+        width: 380px;
+
+        &:before {
+          width: 758px;
+        }
+      }
     }
   }
 }
@@ -626,6 +719,12 @@
     }
   }
 
+  &._no_icon {
+    &:before {
+      display: none;
+    }
+  }
+
   &._review {
     @extend %clearfix;
 
@@ -712,6 +811,14 @@
     }
   }
 
+  ._events & {
+    @extend %global_flex_block_column_nowrap_flex-start_stretch;
+
+    .article_title {
+      @include flex(1 0 auto);
+    }
+  }
+
   ._bordered & {
     @extend %global_flex_block_column_nowrap_flex-start_stretch;
     border-top: 8px solid;
@@ -744,7 +851,7 @@
   }
 
   ._release & {
-    border-top-color: $violette_2;
+    border-top-color: $pink;
   }
 
   ._analysis & {
@@ -791,7 +898,7 @@
 
   &._release {
     .article_block .article_link:hover {
-      color: $violette_2;
+      color: $pink;
     }
   }
 
@@ -926,7 +1033,7 @@
 
   ._release & {
     &:before {
-      background: $violette_2;
+      background: $pink;
     }
   }
 
@@ -1010,7 +1117,7 @@
   }
 
   &._release {
-    background: transparentize($violette_2, .2);
+    background: transparentize($pink, .2);
   }
 
   &._analysis {
@@ -1167,6 +1274,12 @@
     color: #000 !important;
     letter-spacing: .045em;
   }
+
+  ._event & {
+    color: #000 !important;
+    font-weight: 700;
+    letter-spacing: .025em;
+  }
 }
 
 .article_theme {
@@ -1245,6 +1358,10 @@
 
   .news_item & {
     padding-top: 5px;
+  }
+
+  ._event & {
+    font-size: 12px;
   }
 }
 
@@ -1330,13 +1447,45 @@
   }
 }
 
+.article_calendar_holder {
+  float: right;
+  margin-right: 18px;
+}
+
+.article_calendar_link {
+  @include transition_all(background .3s);
+  @extend %icon_pseudo;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  height: 28px;
+  border-radius: 14px;
+  color: #fff;
+  padding: 8px 15px 6px 36px;
+  font: 12px/14px $RubikMed;
+  background: rgba(0, 0, 0, 0.4);
+
+  &:before {
+    position: absolute;
+    top: 7px;
+    left: 12px;
+    font-size: 14px;
+    content: $icon-calendar;
+  }
+
+  &:hover {
+    background: $violette;
+    @extend %firm_bg_color;
+  }
+}
+
 .article_action_block {
   position: absolute;
   top: 0;
   left: 0;
   float: left;
   margin-top: 16px;
-  margin-left: 32px;
+  margin-left: 31px;
 
   //&._opened {
   //  z-index: 1000;
@@ -1351,6 +1500,28 @@
   //    background: rgba(255, 255, 255, .8);
   //  }
   //}
+
+  &._calendar {
+    width: 192px;
+
+    ._col_3_wide & {
+      @include respond-to-max($resp_step_2) {
+        width: 312px;
+      }
+    }
+
+    @include respond-to-min($resp_step_2) {
+      width: 252px;
+    }
+
+    @include respond-to-min($resp_step_3) {
+      width: 315px;
+    }
+
+    @include respond-to-min($resp_step_4) {
+      width: 380px;
+    }
+  }
 }
 
 .action_block {
@@ -1550,7 +1721,7 @@
   }
 
   &._release {
-    background: $violette_2;
+    background: $pink;
   }
 
   &._analysis {
@@ -1708,7 +1879,7 @@
 
     &._release {
       .article_group_link:before {
-        color: $violette_2;
+        color: $pink;
       }
     }
 
