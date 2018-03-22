@@ -4981,6 +4981,21 @@ a.news_name:hover {
 	background: none !important;
 	border: 2px solid #f8f8f8 !important
 }
+
+
+.submit-new-event-link {
+	text-decoration: underline;
+	font: 13px Rubik, sans-serif;
+	display: block;
+	text-align: center;
+	color: #c0c0c0;
+}
+
+.submit-new-event-link:hover {
+	color: #999;
+}
+
+
 @media only screen and (min-width: 1280px) {
 .stat_widget_holder .ccc-widget.ccc-converter {
 	padding: 9px 5px 16px
